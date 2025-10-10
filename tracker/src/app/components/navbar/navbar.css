@@ -1,0 +1,17 @@
+.navbar {
+    background-color: #0B3D91;
+    height: 7vh;
+}
+
+* {
+    color: #ffffff !important;
+}
+
+.nav-item,
+.navbar-brand {
+    margin: 50px
+}
+
+i {
+    margin: 5px;
+}
