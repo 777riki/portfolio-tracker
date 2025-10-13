@@ -1,0 +1,38 @@
+<div class="container d-flex justify-content-center align-items-center mt-5 pt-5">
+    <div class="card shadow-lg border-0 mt-5" style="max-width: 800px; width: 100%;">
+        <div class="card-body p-4">
+            <h4 class="text-center fw-bold mb-3">Login to your Account</h4>
+            <p class="text-center mb-4">
+                Get started with our app — just log in and enjoy the experience.
+            </p>
+
+            <form (ngSubmit)="login(email, password)">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"
+                        placeholder="you@example.com" autocomplete="email" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" [(ngModel)]="password"
+                        [ngModelOptions]="{standalone: true}" placeholder="Enter your password"
+                        autocomplete="current-password" required>
+                </div>
+
+                <div class="d-flex justify-content-end align-items-center mb-3">
+                    <a routerLink="/forgot" class="text-decoration-none small">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 btn-lg">
+                    Login
+                </button>
+            </form>
+
+            <p class="text-center mt-4 mb-0">
+                Don't have an account?
+                <a routerLink="/signup" class="text-primary text-decoration-none">Sign up</a>
+            </p>
+        </div>
+    </div>
+</div>
