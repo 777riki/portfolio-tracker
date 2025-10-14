@@ -1,1 +1,44 @@
-<p>profilo works!</p>
+<div class="container d-flex justify-content-center align-items-center mt-5 pt-5">
+    <div class="card shadow-lg border-0 mt-5" style="max-width: 800px; width: 100%;">
+        <div class="card-body p-4">
+            <h4 class="text-center fw-bold mb-3">Edit your Profile</h4>
+            <p class="text-center mb-4">
+                Update your information and save changes below.
+            </p>
+
+            <form (ngSubmit)="saveChanges(name, email, password, confirmPassword)">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name"
+                        placeholder="John Doe" autocomplete="name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email"
+                        placeholder="you@example.com" autocomplete="email" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password"
+                        placeholder="Create a password" autocomplete="new-password" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPassword" [(ngModel)]="confirmPassword"
+                        name="confirmPassword" placeholder="Repeat your password" autocomplete="new-password" required>
+                </div>
+
+                <div class="d-flex justify-content-end align-items-center mb-3">
+                    <a [routerLink]="['/delete', this.authService.userID()]" class="text-decoration-none small">Click here to delete your account</a>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100 btn-lg">
+                    Save Changes
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

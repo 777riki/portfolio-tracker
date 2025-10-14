@@ -40,7 +40,11 @@ export class Login implements OnInit {
     if (correct) {
       console.log('Correct password! Login successfull!');
       this.authService.isLoggedIn.set(true);
-      this.router.navigate(['/'])
+      this.router.navigate(['/']);
+      
+      const current_user = await this.authService.getUserByEmail(user_mail);
+      console.log('Current user:', current_user);
+      this.authService.userID.set(current_user?.id);
     } else {
       console.log('Wrong password!');
       alert('Wrong password!');

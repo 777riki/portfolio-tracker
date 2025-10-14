@@ -7,6 +7,7 @@ import { Profilo } from './components/profilo/profilo';
 import { Login } from './components/login/login';
 import { Forgot } from './components/forgot/forgot';
 import { Signup } from './components/signup/signup';
+import { Delete } from './components/delete/delete';
 
 export const routes: Routes = [
     {path: '', component: Home},
@@ -17,4 +18,5 @@ export const routes: Routes = [
     {path: 'login', component: Login},
     {path: 'forgot', component: Forgot},
     {path: 'signup', component: Signup},
+    {path: 'delete/:id', component: Delete},
 ];

@@ -24,7 +24,7 @@ export class Signup implements OnInit {
   }
 
   async signup(user_name: string, user_mail: string, user_password: string, user_confirmPassword: string): Promise<void> {
-    if(user_name == '' || user_mail == '' || user_password == '' || user_confirmPassword == '') {
+    if (user_name == '' || user_mail == '' || user_password == '' || user_confirmPassword == '') {
       alert('All fields are mandatory!');
       return;
     }
@@ -47,9 +47,13 @@ export class Signup implements OnInit {
     console.log('Account created successfully!');
     alert('Account created successfully!');
 
+    const current_user = await this.authService.getUserByEmail(user_mail);
+    console.log('Current user:', current_user);
+    this.authService.userID.set(current_user?.id);
+
     this.authService.isLoggedIn.set(true);
     this.authService.getAllUsersDetails();
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
   }
 
 

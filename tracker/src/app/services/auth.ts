@@ -7,6 +7,7 @@ import { db } from '../app.database';
 export class Auth {
 
   isLoggedIn: WritableSignal<boolean> = signal<boolean>(false);
+  userID: WritableSignal<number | undefined> = signal<number | undefined>(undefined);
 
   async getAllUsersDetails() {
     const allUsers = await db.users.toArray();
@@ -29,9 +30,29 @@ export class Auth {
     }
     return user.password === user_password;
   }
-  
-  async getUserByEmail(email: string) {
-    return await db.users.where('email').equals(email).first();
+
+  async getUserByEmail(user_email: string) {
+    return await db.users.where('email').equals(user_email).first();
+  }
+
+  async getUserByID(user_id: number) {
+    return await db.users.where('id').equals(user_id).first();
+  }
+
+  async updateUserData(user_name: string, user_email: string, user_password: string) {
+    const id = this.userID();
+    if (!id) {
+      return;
+    }
+    await db.users.update(id, { name: user_name, email: user_email, password: user_password });
+  }
+
+  async deleteUserByID() {
+    const id = this.userID();
+    if (!id) {
+      return;
+    }
+    await db.users.delete(id);
   }
 
 }
