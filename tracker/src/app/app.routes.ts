@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { Home } from './components/home/home';
 import { Dashboard } from './components/dashboard/dashboard';
 import { Mercato } from './components/mercato/mercato';
 import { Transazioni } from './components/transazioni/transazioni';
@@ -10,7 +9,7 @@ import { Signup } from './components/signup/signup';
 import { Delete } from './components/delete/delete';
 
 export const routes: Routes = [
-    {path: '', component: Home},
+    {path: '', component: Dashboard},
     {path: 'dashboard', component: Dashboard},
     {path: 'mercato', component: Mercato},
     {path: 'transazioni', component: Transazioni},
