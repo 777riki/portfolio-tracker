@@ -29,9 +29,8 @@
                         </li>
                     </ul>
 
-                    <div class="text-center">
-                        <gecko-coin-price-chart-widget locale="it" outlined="true" [coin-id]="coin.nameid" initial-currency="usd"></gecko-coin-price-chart-widget>
-                    </div>
+                    <canvas id="myChart-{{$index}}" class="mt-5"></canvas>
+
                 </div>
             </div>
         </div>
@@ -42,4 +41,5 @@
     @if (coins().length === 0) {
     <p class="text-center mt-3 w-100">Loading coin data...</p>
     }
+
 </div>
