@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { Coins } from '../../services/coins';
 import { Coin } from '../../interfaces/data';
 
@@ -7,7 +7,8 @@ import { Coin } from '../../interfaces/data';
   selector: 'app-dashboard',
   imports: [],
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css'
+  styleUrl: './dashboard.css',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class Dashboard implements OnInit {
 
