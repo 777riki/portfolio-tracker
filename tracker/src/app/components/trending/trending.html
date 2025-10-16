@@ -1,0 +1,50 @@
+<h2 class="text-center fw-bold mt-5 pt-5">Top 30 Trending coins today <i class="bi bi-fire"></i></h2>
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="row g-4 w-100">
+
+        @for (coin of coins(); track $index) {
+        <div class="col-12 col-md-6 col-lg-4">
+            <a [routerLink]="['/coin', coin.nameid]">
+                <div class="card shadow-lg border-0 h-100">
+                    <div class="card-body p-4">
+                        <h5 class="text-center fw-bold mb-3">{{ coin.name }} ({{ coin.symbol }})</h5>
+                        <p class="text-center mb-4">Rank: {{ coin.rank }}</p>
+
+                        <ul class="list-group list-group-flush mb-4">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Price USD:</span> <span>${{ coin.price_usd }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Change 1h:</span> <span>{{ coin.percent_change_1h }}%</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Change 24h:</span> <span>{{ coin.percent_change_24h }}%</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Change 7d:</span> <span>{{ coin.percent_change_7d }}%</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Circulating Supply:</span> <span>{{ coin.csupply }}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Volume 24h:</span> <span>${{ coin.volume24 }}</span>
+                            </li>
+                        </ul>
+                        <div class="chart-container position-relative" style="height: 30vh; width: 100%;">
+                            <canvas id="myChart-{{$index}}"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+        }
+
+    </div>
+
+    @if (coins().length === 0) {
+    <p class="text-center mt-3 w-100">Loading coin data...</p>
+    }
+
+</div>

@@ -1,0 +1,7 @@
+.card:hover {
+    scale: 1.02;
+}
+
+a {
+    text-decoration: none;
+}

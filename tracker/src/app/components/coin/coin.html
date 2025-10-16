@@ -1,0 +1,16 @@
+<div class="container pt-5 mt-5">
+    <div class="card shadow-lg border-0 mx-auto" style="max-width: 900px;">
+        <div class="card-body p-4">
+            <div class="text-center mb-4">
+                <h3 class="fw-bold mb-1">{{ coinName?.toUpperCase() }} Price Chart</h3>
+                <p class="text-muted mb-0">
+                    Real-time historical price data (last 7d)
+                </p>
+            </div>
+
+            <div class="chart-container position-relative" style="height: 60vh; width: 100%;">
+                <canvas #myChart></canvas>
+            </div>
+        </div>
+    </div>
+</div>

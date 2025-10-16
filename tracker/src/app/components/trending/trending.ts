@@ -2,16 +2,17 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit, signal, WritableSign
 import { Coins } from '../../services/coins';
 import { Coin } from '../../interfaces/data';
 import { Chart, registerables } from 'chart.js';
+import { RouterLink } from '@angular/router';
 Chart.register(...registerables);
 
 @Component({
-  selector: 'app-dashboard',
-  imports: [],
-  templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css',
+  selector: 'app-trending',
+  imports: [RouterLink],
+  templateUrl: './trending.html',
+  styleUrl: './trending.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class Dashboard implements OnInit {
+export class Trending implements OnInit {
 
   coinService: Coins = inject(Coins);
   coins: WritableSignal<Coin[]> = signal<Coin[]>([]);
@@ -36,17 +37,6 @@ export class Dashboard implements OnInit {
             const price_24h_ago = price_now / (1 + percent_24h / 100);
             const price_1h_ago = price_now / (1 + percent_1h / 100);
 
-            let borderColor = '';
-            let backgroundColor = '';
-
-            if (price_7d_ago > price_now) {
-              borderColor = '#D50000';
-              backgroundColor = 'rgba(213, 0, 0, 0.1)';
-            } else {
-              borderColor = '#00C853';
-              backgroundColor = 'rgba(0, 200, 83, 0.1)';
-            }
-
             if (ctx) {
               new Chart(ctx, {
                 type: 'line',
@@ -60,12 +50,52 @@ export class Dashboard implements OnInit {
                       price_1h_ago,
                       price_now
                     ],
-                    borderWidth: 1,
-                    borderColor: borderColor,
-                    backgroundColor: backgroundColor,
+                    borderColor: '#007bff',
+                    borderWidth: 2,
+                    backgroundColor: 'rgba(0, 123, 255, 0.1)',
                     fill: true,
-                    tension: 0.4
+                    tension: 0.3
                   }]
+                },
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  scales: {
+                    x: {
+                      ticks: {
+                        maxTicksLimit: 10,
+                        color: '#666',
+                        font: { size: 11 }
+                      },
+                      grid: { display: false }
+                    },
+                    y: {
+                      ticks: {
+                        color: '#666',
+                        callback: (value: any) => `$${value.toLocaleString()}`
+                      },
+                      grid: {
+                        color: 'rgba(200, 200, 200, 0.2)'
+                      }
+                    }
+                  },
+                  plugins: {
+                    legend: {
+                      display: true,
+                      labels: { color: '#333' }
+                    },
+                    tooltip: {
+                      mode: 'index',
+                      intersect: false,
+                      backgroundColor: '#0d6efd',
+                      titleColor: '#fff',
+                      bodyColor: '#fff'
+                    }
+                  },
+                  interaction: {
+                    mode: 'index',
+                    intersect: false
+                  }
                 }
               });
             }

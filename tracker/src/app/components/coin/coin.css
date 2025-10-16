@@ -1,0 +1,14 @@
+.chart-container {
+    position: relative;
+    min-height: 400px;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 1rem;
+}
+
+canvas {
+    display: block;
+    max-width: 100%;
+}
