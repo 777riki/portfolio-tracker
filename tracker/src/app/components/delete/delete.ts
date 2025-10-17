@@ -20,13 +20,13 @@ export class Delete implements OnInit {
 
   async yes(): Promise<void> {
     await this.authService.deleteUserByID();
-    this.router.navigate(['/signup']);
+    this.router.navigate(['/trending']);
     this.authService.isLoggedIn.set(false);
     this.authService.userID.set(undefined);
   }
 
   no() {
-    this.router.navigate(['/profilo']);
+    this.router.navigate(['/trending']);
   }
 
 }

@@ -9,6 +9,7 @@ import { Signup } from './components/signup/signup';
 import { Delete } from './components/delete/delete';
 import { Coin } from './components/coin/coin';
 import { Notfound } from './components/notfound/notfound';
+import { Contact } from './components/contact/contact';
 
 export const routes: Routes = [
     {path: '', component: Trending},
@@ -21,5 +22,6 @@ export const routes: Routes = [
     {path: 'forgot', component: Forgot},
     {path: 'signup', component: Signup},
     {path: 'delete/:id', component: Delete},
+    {path: 'contact', component: Contact},
     {path: '**', component: Notfound},
 ];
