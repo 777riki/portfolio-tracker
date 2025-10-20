@@ -1,14 +1,52 @@
 .chart-container {
     position: relative;
+    width: 100%;
+    height: 55vh;
     min-height: 400px;
 }
 
-.card {
+.card,
+.chart-card {
     background-color: #ffffff;
     border-radius: 1rem;
+    overflow: hidden;
+    max-width: 900px;
 }
 
 canvas {
     display: block;
     max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1rem;
+    }
+
+    .chart-container {
+        height: 45vh;
+    }
+
+    .chart-card {
+        margin: 0 1rem;
+        border-radius: 0.8rem;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+    }
+
+    p.text-muted {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .chart-container {
+        height: 38vh;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
 }
