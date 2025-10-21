@@ -12,3 +12,7 @@
 
 
 CoinGecko API: CG-SLSJ3qrJedtukjgSp6poYWeB	
+
+emailjs
+service id: service_i244dxm
+template id: template_9zggoca
