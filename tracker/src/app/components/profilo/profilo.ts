@@ -25,9 +25,12 @@ export class Profilo implements OnInit {
   currentUser_mail: WritableSignal<string> = signal('');
   currentUser_password: WritableSignal<string> = signal('');
 
+  showAlert = false;
+  alertMessage = '';
+
   async ngOnInit(): Promise<void> {
     const id = this.authService.userID();
-    if (id !== undefined) {
+    if (id) {
       const currentUser = await this.authService.getUserByID(id);
       if (currentUser) {
         console.log('Current user:', currentUser);
@@ -48,19 +51,27 @@ export class Profilo implements OnInit {
 
   async saveChanges(user_name: string, user_mail: string, user_password: string, user_confirmPassword: string): Promise<void> {
     if (user_name == '' || user_mail == '' || user_password == '' || user_confirmPassword == '') {
-      alert('All fields are mandatory!');
+      this.alertMessage = '❌ All fields are mandatory!';
+      this.showAlert = true;
       return;
     }
 
     if (user_password !== user_confirmPassword) {
-      alert('Passwords must be the same!');
+      this.alertMessage = '❌ Passwords must be the same!';
+      this.showAlert = true;
       console.log('Passwords must be the same!');
       return;
     }
 
     this.authService.updateUserData(user_name, user_mail, user_password);
     console.log('User updated successfully');
+    this.alertMessage = '✅ User updated successfully!';
+    this.showAlert = true;
     this.authService.getAllUsersDetails();
-    
+
+  }
+
+  closeAlert() {
+    this.showAlert = false;
   }
 }

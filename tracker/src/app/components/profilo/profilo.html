@@ -1,4 +1,14 @@
-<div class="container d-flex justify-content-center align-items-center mt-5 pt-5">
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 85vh;">
+
+    @if(showAlert) {
+    <div class="alert-overlay">
+        <div class="alert-box">
+            <p>{{ alertMessage }}</p>
+            <button (click)="closeAlert()">OK</button>
+        </div>
+    </div>
+    }
+
     <div class="card shadow-lg border-0 mt-5" style="max-width: 800px; width: 100%;">
         <div class="card-body p-4">
             <h4 class="text-center fw-bold mb-3">Edit your Profile</h4>

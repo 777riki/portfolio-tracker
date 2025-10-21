@@ -14,24 +14,34 @@ export class Forgot {
   authService: Auth = inject(Auth);
   router: Router = inject(Router);
 
+  showAlert = false;
+  alertMessage = '';
+
   email: string = '';
 
   async sendResetLink(user_mail: string): Promise<void> {
     if (user_mail === '') {
-      alert('All fields are mandatory!');
+      this.alertMessage = '❌ All fields are mandatory!';
+      this.showAlert = true;
       return;
     }
 
     const exists = await this.authService.userExists(user_mail);
     if (!exists) {
-      alert('Email not found!');
+      this.alertMessage = '❌ Email not found!';
+      this.showAlert = true;
       return;
     }
 
     const user = await this.authService.getUserByEmail(user_mail);
     if (user) {
-      console.log('User password:', user.password);
+      this.alertMessage = '✅ Your password is: ' + user.password;
+      this.showAlert = true;
       this.router.navigate(['/login'])
     }
+  }
+
+  closeAlert() {
+    this.showAlert = false;
   }
 }

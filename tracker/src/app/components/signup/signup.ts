@@ -19,25 +19,31 @@ export class Signup implements OnInit {
   password: string = '';
   confirmPassword: string = '';
 
+  showAlert = false;
+  alertMessage = '';
+
   ngOnInit(): void {
     this.authService.getAllUsersDetails();
   }
 
   async signup(user_name: string, user_mail: string, user_password: string, user_confirmPassword: string): Promise<void> {
     if (user_name == '' || user_mail == '' || user_password == '' || user_confirmPassword == '') {
-      alert('All fields are mandatory!');
+      this.alertMessage = '❌ All fields are mandatory!';
+      this.showAlert = true;
       return;
     }
 
     if (user_password !== user_confirmPassword) {
-      alert('Passwords must be the same!');
+      this.alertMessage = '❌ Passwords must be the same!';
+      this.showAlert = true;
       console.log('Passwords must be the same!');
       return;
     }
 
     const exists = await this.authService.userExists(user_mail);
     if (exists) {
-      alert('Email already associated with another account!');
+      this.alertMessage = '❌ Email already associated with another account!';
+      this.showAlert = true;
       console.log('Email already associated with another account!');
       return;
     }
@@ -45,7 +51,8 @@ export class Signup implements OnInit {
     await this.authService.addUser(user_name, user_mail, user_password);
 
     console.log('Account created successfully!');
-    alert('Account created successfully!');
+    this.alertMessage = '✅ Account created successfully!';
+    this.showAlert = true;
 
     const current_user = await this.authService.getUserByEmail(user_mail);
     console.log('Current user:', current_user);
@@ -56,5 +63,7 @@ export class Signup implements OnInit {
     this.router.navigate(['/']);
   }
 
-
+  closeAlert() {
+    this.showAlert = false;
+  }
 }

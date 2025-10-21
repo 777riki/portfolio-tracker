@@ -1,10 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-delete',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './delete.html',
   styleUrl: './delete.css'
 })

@@ -1,1 +1,55 @@
-<p>contact works!</p>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 85vh;">
+
+    @if(showAlert) {
+    <div class="alert-overlay">
+        <div class="alert-box">
+            <p>{{ alertMessage }}</p>
+            <button (click)="closeAlert()">OK</button>
+        </div>
+    </div>
+    }
+
+    <div class="card shadow-lg border-0 mt-5" style="max-width: 800px; width: 100%;">
+        <div class="card-body p-4">
+            <h4 class="text-center fw-bold mb-3">Contact Us</h4>
+            <p class="text-center mb-4">
+                Don't be afraid of asking! We'll be happy to help you!
+            </p>
+
+            <form (ngSubmit)="send(name, email, object, message)">
+                @if(!this.authService.isLoggedIn()) {
+                <div class="mb-3">
+                    <label for="name" class="form-label">Full name</label>
+                    <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name"
+                        placeholder="John Doe" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email"
+                        placeholder="you@example.com" required>
+                </div>
+                }
+                <div class="mb-3">
+                    <label for="object" class="form-label">Object</label>
+                    <input type="text" class="form-control" id="object" [(ngModel)]="object" name="object"
+                        placeholder="I need help with..." required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea type="text" class="form-control" id="message" [(ngModel)]="message" name="message"
+                        placeholder="Start typing..." required style="height: 20vh; resize: none"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 btn-lg">
+                    Send <i class="bi bi-send"></i>
+                </button>
+            </form>
+
+            <p class="text-center mt-4 mb-0">
+                We'll be responding to this mail as soon as possible
+            </p>
+        </div>
+    </div>
+</div>

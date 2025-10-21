@@ -1,11 +1,41 @@
-<div class="container d-flex justify-content-center align-items-center mt-5 pt-5">
-    <div class="card shadow-lg border-0 mt-5" style="max-width: 800px; width: 100%;">
-        <div class="card-body p-4">
-            <h4 class="text-center fw-bold mb-3">Delete your account?</h4>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 85vh;">
+    <div class="card shadow-lg border-0" style="max-width: 700px; width: 100%;">
+        <div class="card-body p-5">
 
-            <div class="d-flex flex-column flex-md-row justify-content-between gap-3">
-                <button class="btn btn-success flex-fill btn-lg" (click)="yes()">Yes, continue</button>
-                <button class="btn btn-danger flex-fill btn-lg" (click)="no()">No, bring me back</button>
+            <div class="text-center mb-4">
+                <div class="text-danger mb-3">
+                    <i class="bi bi-exclamation-triangle-fill" style="font-size: 3rem;"></i>
+                </div>
+                <h3 class="fw-bold">Are you sure you want to delete your account?</h3>
+                <p class="text-muted mt-2">
+                    This action is <strong>irreversible</strong>. All your data, preferences, and saved items will be
+                    permanently removed.
+                </p>
+            </div>
+
+            <div class="alert alert-warning d-flex align-items-center gap-2" role="alert">
+                <i class="bi bi-info-circle-fill fs-4 mx-2"></i>
+                <div class="px-2">
+                    Before proceeding, consider contacting support if you have any doubts.
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between gap-3 mt-4">
+                <button class="btn btn-danger flex-fill btn-lg d-flex align-items-center justify-content-center"
+                    (click)="yes()">
+                    <i class="bi bi-trash3-fill me-2"></i> Yes, delete my account
+                </button>
+                <button
+                    class="btn btn-outline-secondary flex-fill btn-lg d-flex align-items-center justify-content-center"
+                    (click)="no()">
+                    <i class="bi bi-arrow-left-circle me-2"></i> No, take me back
+                </button>
+            </div>
+
+            <div class="text-center mt-4">
+                <a routerLink="/contact" class="text-decoration-none text-muted small">
+                    <i class="bi bi-life-preserver me-1"></i> Need help? Contact support
+                </a>
             </div>
 
         </div>

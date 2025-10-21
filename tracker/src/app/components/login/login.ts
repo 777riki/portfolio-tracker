@@ -17,13 +17,17 @@ export class Login implements OnInit {
   email: string = '';
   password: string = '';
 
+  showAlert = false;
+  alertMessage = '';
+
   ngOnInit(): void {
     this.authService.getAllUsersDetails();
   }
 
   async login(user_mail: string, user_password: string): Promise<void> {
-    if(user_mail == '' || user_password == '') {
-      alert('All fields are mandatory!');
+    if (user_mail == '' || user_password == '') {
+      this.alertMessage = '❌ All fields are mandatory!';
+      this.showAlert = true;
       return;
     }
 
@@ -32,23 +36,30 @@ export class Login implements OnInit {
     const exists = await this.authService.userExists(user_mail);
     if (!exists) {
       console.log('User not found!');
-      alert('User not found!');
+      this.alertMessage = '❌ User not found!';
+      this.showAlert = true;
       return;
     }
 
     const correct = await this.authService.rightPassword(user_mail, user_password);
     if (correct) {
-      console.log('Correct password! Login successfull!');
+      this.alertMessage = '✅ Correct password! Login successfull!';
+      this.showAlert = true;
       this.authService.isLoggedIn.set(true);
       this.router.navigate(['/']);
-      
+
       const current_user = await this.authService.getUserByEmail(user_mail);
       console.log('Current user:', current_user);
       this.authService.userID.set(current_user?.id);
     } else {
       console.log('Wrong password!');
-      alert('Wrong password!');
+      this.alertMessage = '❌ Wrong password!';
+      this.showAlert = true;
     }
+  }
+
+  closeAlert() {
+    this.showAlert = false;
   }
 
 }
